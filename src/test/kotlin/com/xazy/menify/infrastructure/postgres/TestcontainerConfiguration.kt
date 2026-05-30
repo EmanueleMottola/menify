@@ -1,4 +1,4 @@
-package com.xazy.menify.infrastructure
+package com.xazy.menify.infrastructure.postgres
 
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection
