@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Menify API
+  version: 1.0.0
+
+paths:
+  /auth/signup:
+    post:
+      summary: Sign up a new user
+      operationId: signUp
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserBody'
+            example:
+              email: john@example.com
+              username: johndoe
+              password: password123
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpResponse'
+              example:
+                accessToken: eyJhbGciOiJIUzI1NiJ9...
+        '400':
+          description: Validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+              example:
+                email: ["Email must be valid"]
+                password: ["Password must be at least 8 characters"]
+        '409':
+          description: Email or username already in use
+
+components:
+  schemas:
+    CreateUserBody:
+      type: object
+      required:
+        - email
+        - username
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        username:
+          type: string
+          minLength: 3
+          maxLength: 50
+        password:
+          type: string
+          minLength: 8
+
+    SignUpResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+
+    ValidationError:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
