@@ -36,6 +36,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-jooq")
 	implementation("org.springframework.boot:spring-boot-starter-flyway")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.postgresql:postgresql:42.7.2")
 	implementation("org.flywaydb:flyway-core:11.8.0")
 	implementation("org.flywaydb:flyway-database-postgresql:11.8.0")
